@@ -123,9 +123,9 @@ toc:
                     <dd>Individual item.
                       <dl>
                         <dt><code class="highlight language-html">&lt;a&gt;</code></dt>
-                        <dd>A link. By default, clicking on a link will close the sidebar on mobile unless the <code>data-keep-mobile-sidebar-open</code> attribute is present.</dd>
+                        <dd>A link. By default, clicking on a link will close the sidebar on mobile unless the <code>data-keep-mobile-sidebar-open</code> attribute is present. Set <code>aria-current="page"</code> on the active link.</dd>
                         <dt><code class="highlight language-html">&lt;button&gt;</code></dt>
-                        <dd>A button. By default, clicking on a button will close the sidebar on mobile unless the <code>data-keep-mobile-sidebar-open</code> attribute is present.</dd>
+                        <dd>A button. By default, clicking on a button will close the sidebar on mobile unless the <code>data-keep-mobile-sidebar-open</code> attribute is present. If your app uses buttons for navigation, set <code>aria-current="page"</code> on the active item.</dd>
                         <dt><code class="highlight language-html">&lt;details&gt;</code></dt>
                         <dd>Collapsible section.
                           <dl>
@@ -153,6 +153,15 @@ toc:
     <dd>A button to toggle the sidebar. If you want to use multiple sidebars you will need to add unique ids to the sidebars (i.e. <code>&lt;aside class="sidebar" id="{SIDEBAR_ID}"&gt;</code>) and refer to them in the event <code>detail</code> (i.e. <code>document.dispatchEvent(new CustomEvent('basecoat:sidebar', { detail: { id: '{SIDEBAR_ID}' } }));</code>).</dd>
   </dl>
 </section>
+
+{% set code_current %}<!-- Server-side or router-driven current link -->
+<nav>
+  <ul>
+    <li><a href="/my-path?page=overview">Overview</a></li>
+    <li><a href="/my-path?page=settings" aria-current="page">Settings</a></li>
+  </ul>
+</nav>{% endset %}
+{{ code_block(code_current | prettyHtml, "html") }}
 
 <h4 id="usage-html-js-4"><a href="#usage-html-js-4">JavaScript events</a></h4>
 
